@@ -88,6 +88,63 @@ void main() {
     expect(find.text('6.00'), findsOneWidget);
   });
 
+  testWidgets('deve multiplicar corretamente', (tester) async {
+    await tester.pumpWidget(Calculadora());
+    final numeroTres = find.text('3').first;
+    final multiplicacao = find.text('*');
+    final numeroCinco = find.text('5').last;
+    final botaoCalcular = find.byType(BotaoCalcular);
+
+    await tester.tap(numeroTres);
+    await tester.pumpAndSettle();
+    await tester.tap(multiplicacao);
+    await tester.pumpAndSettle();
+    await tester.tap(numeroCinco);
+    await tester.pumpAndSettle();
+    await tester.tap(botaoCalcular);
+    await tester.pumpAndSettle();
+
+    expect(find.text('15.00'), findsOneWidget);
+  });
+
+  testWidgets('deve dividir corretamente', (tester) async {
+    await tester.pumpWidget(Calculadora());
+    final numeroOito = find.text('8').first;
+    final divisao = find.text('/');
+    final numeroDois = find.text('2').last;
+    final botaoCalcular = find.byType(BotaoCalcular);
+
+    await tester.tap(numeroOito);
+    await tester.pumpAndSettle();
+    await tester.tap(divisao);
+    await tester.pumpAndSettle();
+    await tester.tap(numeroDois);
+    await tester.pumpAndSettle();
+    await tester.tap(botaoCalcular);
+    await tester.pumpAndSettle();
+
+    expect(find.text('4.00'), findsOneWidget);
+  });
+
+  testWidgets('deve calcular o resto corretamente', (tester) async {
+    await tester.pumpWidget(Calculadora());
+    final numeroNove = find.text('9').first;
+    final resto = find.text('%');
+    final numeroDois = find.text('2').last;
+    final botaoCalcular = find.byType(BotaoCalcular);
+
+    await tester.tap(numeroNove);
+    await tester.pumpAndSettle();
+    await tester.tap(resto);
+    await tester.pumpAndSettle();
+    await tester.tap(numeroDois);
+    await tester.pumpAndSettle();
+    await tester.tap(botaoCalcular);
+    await tester.pumpAndSettle();
+
+    expect(find.text('1.00'), findsOneWidget);
+  });
+
   testWidgets('deve zerar operacao ao clicar em zerar', (tester) async {
     await tester.pumpWidget(Calculadora());
     final numeroOito = find.text('8').first;
